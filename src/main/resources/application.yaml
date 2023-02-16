@@ -1,0 +1,19 @@
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:9092
+      default-binder: kafka
+      bindings:
+        vehicleCreate-in-0:
+          binder: kafka
+          destination: vehicle-create
+          content-type: application/json
+          group: online-shop-group
+          consumer:
+            concurrency: 1
+    function:
+      definition: vehicleCreate
